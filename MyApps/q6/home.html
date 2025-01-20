@@ -1,0 +1,29 @@
+<html>
+<body>
+
+<h1>This is the home page, move else page will loaded after 10 sec</h1>
+<script>
+
+<script>
+	(function () {
+		const idleduration= 10;
+		const redirecturl= "./logout.html";
+
+		let idletime;
+
+		const resetTime= function(){
+			if (idletime){
+				clearTimeout(idletime);
+			}
+			idletime= setTimeout(() => location.href= redirecturl, idleduration*1000);
+		};
+
+		resetTime();
+
+		["click", "touchstart", "mousemove"].forEach(event => document.addEventListener(
+				event, resetTime, false)
+		);
+	})();
+</script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<html>
+<head>
+<script>
+function checkform(){
+	var username= document.getElementByName("username");
+	var pass= document.getElementByName("password");
+	var errorlabel= document.getElementById("errorlabel");
+	
+	var possiblechars= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
+	
+	if(username.value.length > 10 || !isOnlyCharsInString(username.value, possiblechars)){
+		errorlabel.innerText= "Cannot allow anything other than alphabet, numbers, underscore";
+		errorlabel.style.color= "red";
+		return false;
+	}
+	
+	if(password.value.length <6 || password.value.length >10 || !hasDigit(password.value) || !hasUpperCase(password.value)){
+		errorlabel.innerText= "Password must be between 6-10 and should have atleast one digit and atleast one uppercase";
+		errorlabel.style.color= "red";
+		return false;
+	}
+		
+	return true;
+
+	function isOnlyCharsInString(s, valchar){
+		for (var i=0;i<s.length:;i++){
+			if(valchar.indexOf(s.charAt(i)==-1){
+				return false;
+			}
+		}
+		return true;
+	}
+	
+	function hasDigit(s){
+		var digits= "0123456789";
+		for(var i=0;i<s.length();i++){
+			if(s.charAt(i)==-1){
+				return false;
+			}
+			return true;
+		}
+	}
+	
+	function hasUpperCase(s){
+		for(var i==0;i<s.length;i++){
+			if(s.charAt(i)==str.charAt(i).toUpperCase()){
+				return true;
+			}
+		}
+
+		return false;
+	}
+}
+
+<body>
+<form onsubmit="return checkform()">
+	<label>Login Name: </label>
+	<input type="text" name="username"><br>
+	<label>Password: </label>
+	<input type="text" name="password"><br>
+	<input type="submit" value="Submit">
+	<br><br>
+	<label id="errorlabel"/>
+</form>
+</body>
+</html>
