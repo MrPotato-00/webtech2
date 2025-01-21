@@ -1,66 +1,61 @@
 <html>
 <head>
+
+</head>
+<body>
+<form onsubmit="checkup();">
+<label>UserName: </label>
+<input type="text" name="username"><br>
+<label>Password: </label>
+<input type="password" name="password"><br>
+
+<input type="submit" value="Submit">
+<br><br>
+<label id= "labelf"></label>
+</form>
+
+</body>
 <script>
-function checkform(){
-	var username= document.getElementByName("username");
-	var pass= document.getElementByName("password");
-	var errorlabel= document.getElementById("errorlabel");
-	
-	var possiblechars= "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789_";
-	
-	if(username.value.length > 10 || !isOnlyCharsInString(username.value, possiblechars)){
-		errorlabel.innerText= "Cannot allow anything other than alphabet, numbers, underscore";
-		errorlabel.style.color= "red";
-		return false;
-	}
-	
-	if(password.value.length <6 || password.value.length >10 || !hasDigit(password.value) || !hasUpperCase(password.value)){
-		errorlabel.innerText= "Password must be between 6-10 and should have atleast one digit and atleast one uppercase";
-		errorlabel.style.color= "red";
-		return false;
-	}
-		
-	return true;
-
-	function isOnlyCharsInString(s, valchar){
-		for (var i=0;i<s.length:;i++){
-			if(valchar.indexOf(s.charAt(i)==-1){
-				return false;
-			}
-		}
-		return true;
-	}
-	
-	function hasDigit(s){
-		var digits= "0123456789";
-		for(var i=0;i<s.length();i++){
-			if(s.charAt(i)==-1){
-				return false;
-			}
-			return true;
-		}
-	}
-	
-	function hasUpperCase(s){
-		for(var i==0;i<s.length;i++){
-			if(s.charAt(i)==str.charAt(i).toUpperCase()){
-				return true;
-			}
-		}
-
-		return false;
-	}
+function check(s){
+let regex= /\d/;
+if (regex.test(s)){
+return true;
+}
+return false;
 }
 
-<body>
-<form onsubmit="return checkform()">
-	<label>Login Name: </label>
-	<input type="text" name="username"><br>
-	<label>Password: </label>
-	<input type="text" name="password"><br>
-	<input type="submit" value="Submit">
-	<br><br>
-	<label id="errorlabel"/>
-</form>
-</body>
+function upperc(s){
+for (let i=0; i<s.length;i++){
+if(s.charAt(i)!= s.charAt(i).toUpperCase()) {
+return false;
+}
+}
+return true;
+}
+
+function checkuser(s){
+const pattern= /[^ a-zA-Z0-9_]+$/;
+
+if (pattern.test(username)){
+return true;
+}
+return false;
+}
+
+function checkup(){
+var username= document.getElementByName("username").value;
+var password= document.getElementByName("password").value;
+var error= document.getElementById("labelf");
+
+// check for password
+if (!checkuser(username) || username.length>10 || password.length<6 || password.length >10 || !check(password) || !upperc(password)){
+	error.innerText= "All not well";
+	error.style.color= "red";
+	return false;	
+}
+else{
+return true;
+}
+}
+</script>
 </html>
