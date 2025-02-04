@@ -1,0 +1,38 @@
+<html>
+    <body>
+
+        <form>
+          <label>
+            <input type="radio" name="option" value="payNow" onclick="showTextbox()"> Pay Now
+          </label>
+          <br><br>
+          <label>
+            <input type="radio" name="option" value="payLater" onclick="showTextbox()"> Pay Later
+          </label>
+          <br><br>
+          <div id="textbox-container" style="display: none;">
+            <label>
+              Enter your desired Date of Payment:
+              <input type="text" name="text" id="textbox">
+            </label>
+          </div>
+          <br>
+          <input type="submit" value="Submit">
+        </form>
+
+        <script>
+          function showTextbox() {
+            var container = document.getElementById("textbox-container");
+            var textbox = document.getElementById("textbox");
+            if (document.querySelector('input[name="option"]:checked').value === "payLater") {
+              container.style.display = "block";
+              textbox.required = true;
+            } else {
+              container.style.display = "none";
+              textbox.required = false;
+            }
+          }
+        </script>
+    
+    </body>
+</html>

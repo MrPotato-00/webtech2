@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE question-paper SYSTEM "question.dtd">
+<question-paper>
+    <question no="1">
+        <text>Who is the president of USA?</text>
+        <optionA>Donald Trump</optionA>
+        <optionB>Will Smith</optionB>
+        <optionC>Bill Clinton</optionC>
+        <optionD>Michael Jordan</optionD>
+        <answer value="optionA">Donald Trump</answer>
+    </question>
+    
+    <question no="2">
+        <text>Which planet is known as the Red Planet?</text>
+        <optionA>Earth</optionA>
+        <optionB>Mars</optionB>
+        <optionC>Jupiter</optionC>
+        <optionD>Venus</optionD>
+        <answer value="optionB">Mars</answer>
+    </question>
+    
+    <question no="3">
+        <text>Who wrote 'A Tale of Two Cities'?</text>
+        <optionA>Charles Dickens</optionA>
+        <optionB>William Shakespeare</optionB>
+        <optionC>Mark Twain</optionC>
+        <optionD>Jane Austen</optionD>
+        <answer value="optionA">Charles Dickens</answer>
+    </question>
+</question-paper>
