@@ -1,0 +1,151 @@
+<html>
+	<head>
+    <script>
+        // Define a JavaScript object containing the states and their respective districts
+        var statesAndDistricts = {
+            "Bihar": [
+                "Patna",
+                "Gaya",
+                "Muzaffarpur"
+            ],
+            "Gujarat": [
+                "Ahmedabad",
+                "Surat",
+                "Vadodara"
+            ],
+            "Haryana": [
+                "Gurgaon",
+                "Faridabad",
+                "Hisar"
+            ],
+            "Himachal Pradesh": [
+                "Shimla",
+                "Kullu",
+                "Mandi"
+            ],
+            "Jammu and Kashmir": [
+                "Srinagar",
+                "Jammu",
+                "Anantnag"
+            ],
+            "Jharkhand": [
+                "Ranchi",
+                "Hazaribagh",
+                "Bokaro"
+            ],
+            "Karnataka": [
+                "Bengaluru",
+                "Mysuru",
+                "Belagavi"
+            ],
+            "Kerala": [
+                "Kochi",
+                "Kozhikode"
+            ],
+            "Madhya Pradesh": [
+                "Indore",
+                "Bhopal",
+                "Gwalior"
+            ],
+            "Maharashtra": [
+                "Mumbai",
+                "Pune",
+                "Nagpur"
+            ],
+            "Odisha": [
+                "Bhubaneswar",
+                "Cuttack",
+                "Berhampur"
+            ],
+            "Punjab": [
+                "Ludhiana",
+                "Amritsar",
+                "Jalandhar"
+            ],
+            "Rajasthan": [
+                "Jaipur",
+                "Jodhpur",
+                "Udaipur"
+            ],
+            "Tamil Nadu": [
+                "Chennai",
+                "Madurai"
+            ],
+
+            "Uttar Pradesh": [
+                "Lucknow", 
+                "Agra", 
+                "Varanasi"
+            ],
+
+            "West Bengal": [
+                "Birbhum", 
+                "Howrah", 
+                "Paschim Burdwan"
+            ]
+
+        };
+
+        // Function to populate the "States" drop-down list
+        function populateStates() {
+            var statesDropdown = document.getElementById("states");
+            for (var state in statesAndDistricts) {
+                var option = document.createElement("option");
+                option.text = state;
+                statesDropdown.add(option);
+            }
+        }
+
+        // Function to populate the "Districts" drop-down list based on the selected state
+        function populateDistricts() {
+            var statesDropdown = document.getElementById("states");
+            var districtsDropdown = document.getElementById("districts");
+            districtsDropdown.innerHTML = "";
+            var selectedState = statesDropdown.value;
+            var districts = statesAndDistricts[selectedState];
+            for (var i = 0; i < 3 && i < districts.length; i++) {
+                var option = document.createElement("option");
+                option.text = districts[i];
+                districtsDropdown.add(option);
+            }
+        }
+
+        // Function to display the information of the selected district
+        function displayDistrictInfo() {
+            var statesDropdown = document.getElementById("states");
+            var districtsDropdown = document.getElementById("districts");
+            var selectedState = statesDropdown.value;
+            var selectedDistrict = districtsDropdown.value;
+            var population, sexRatio;
+            // Get the population and sex ratio data from some source based on the selected state and district
+            // For this example, we will just generate random data
+            population = Math.floor(Math.random() * 1000000) + 100000;
+            sexRatio = Math.floor(Math.random() * 50) + 900;
+
+            // Display the information in a brief manner
+            var districtInfoLabel = document.getElementById("district-info");
+            districtInfoLabel.style.color = "black";
+            districtInfoLabel.innerHTML = `Population of ${selectedDistrict} district in ${selectedState} is ${population} and the sex ratio is ${sexRatio}.`;
+        }
+    </script>
+</head>
+
+<body onload="populateStates()">
+
+    <br><br>
+    <label for="states">States:</label>
+    <select id="states" onchange="populateDistricts()">
+        <option value="">--Select a state--</option>
+    </select>
+    <br />
+    <br />
+    <label for="districts">Districts:</label>
+    <select id="districts" onchange="displayDistrictInfo()">
+        <option value="">--Select a district--</option>
+    </select>
+    <br />
+    <br />
+    <label id="district-info"></label>
+</body>
+
+</html>

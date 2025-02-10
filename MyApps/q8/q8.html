@@ -1,20 +1,6 @@
 <html>
-  <head>
-    <title>Subject List Example</title>
-    <style>
-      #subject-list {
-        display: none;
-      }
+  <body>
 
-      #subject-message {
-        display: none;
-      }
-    </style>
-  </head>
-  <body bgcolor=#FFFFE0>
-
-
-    <br>
     <label for="year">Year:</label>
     <select id="year" name="year" onchange="updateSubjectList()">
       <option value="">Select a year</option>
@@ -48,37 +34,29 @@
 
           // Add new subjects based on the year and semester
           if (year === "1st" && semester === "1st") {
-            addSubject("Mathematics I");
-            addSubject("Sociology");
-            addSubject("Engineering Mechanics");
+            addSubject("Maths");
+            addSubject("Physics");
           } else if (year === "1st" && semester === "2nd") {
-            addSubject("Mathematics II");
-            addSubject("Engineering Drawing");
-            addSubject("Basic Electronics");
+            addSubject("Electronics");
+            addSubject("Calculus and Derivatives");
           } else if (year === "2nd" && semester === "1st") {
             addSubject("Data Strucures and Algorithms");
             addSubject("Database Management Systems");
-            addSubject("Object Oriented Programming");
           } else if (year === "2nd" && semester === "2nd") {
-            addSubject("Object Oriented Systems");
-            addSubject("Software Engineering");
+            addSubject("Computer Graphics");
             addSubject("Comuter Networks");
           }else if (year === "3rd" && semester === "1st") {
             addSubject("Operating Systems");
-            addSubject("Mobile and Wireless Networks");
-            addSubject("Web Technologies I");
+            addSubject("Web Tech I");
           } else if (year === "3rd" && semester === "2nd") {
-            addSubject("Design and Analysis of Algorithms");
+            addSubject("DAA");
             addSubject("Web Technologies II");
-            addSubject("Information Security");
           } else if (year === "4th" && semester === "1st") {
             addSubject("Machine Learning");
-            addSubject("Internet of Things");
             addSubject("Network Security");
           } else if (year === "4th" && semester === "2nd") {
             addSubject("Data Science");
-            addSubject("Pattern Recognition");
-            addSubject("Management");
+            addSubject("Elective");
           }
 
           

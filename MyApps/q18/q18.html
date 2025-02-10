@@ -1,0 +1,15 @@
+<html>
+	<body>
+		<script>
+			if(typeof(EventSource)!="undefined"){
+				es= new EventSource("q18.jsp");
+				es.onmessage= function(event){
+					document.getElementById("price").innerText= event.data;
+				};
+			}
+			else{
+				document.getElementById("price").innerText= "No support for sse";
+			}
+		</script>
+	</body>
+</html>
