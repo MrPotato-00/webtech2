@@ -1,0 +1,44 @@
+<html>
+<head>
+<script>
+var w;
+function getValue(){
+if (window.Worker){
+	var val= document.getElementById("digit").value;
+	var num= parseInt(val, 10); // parseInt(string, radix);
+	console.log(num);
+	var result= document.getElementById("result");
+	w= new Worker("./worker.js");
+	w.postMessage(num);
+	w.onmessage= function(event){
+		const answer= event.data;
+		let lis= "";
+		for (let i=1; i<=num;i++){
+			lis+=  i + ". " + answer[i]+ "\n";
+		}
+		result.innerText= lis;
+	};
+	//w.terminate();
+
+}
+else{
+	document.getElementById("result").innerText= "Web worker is not supported";
+}
+//w.terminate();
+}	
+</script>
+</head>
+<body>
+
+<form onsubmit="getValue()">
+<label for="digit">Enter value: </label>
+<input id= "digit" type="text">
+<br><br>
+<button type= "button" onclick="getValue()">Submit</button>
+<br>
+<!--<label id="result"></label>-->
+<p> <ul id= "result"></ul></p>
+
+</form>
+</body>
+</html>
