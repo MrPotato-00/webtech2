@@ -1,0 +1,36 @@
+<html>
+	<head>
+
+		<script>
+			function checkLogin(){
+				let login= document.getElementById("loginname").value;
+				let jax= new XMLHttpRequest();
+				jax.open("GET", "checklogin.jsp?login=" + login,true);
+				jax.onreadystatechange= function(){
+					if(jax.readyState==4 && jax.status==200){
+						document.getElementById("loginStatus").innerText= jax.responseText;
+					}
+				};
+				jax.send();
+		</script>
+	</head>
+	<body>
+		<h2>SignUp</h2>
+		<form action="register.jsp" method="post">
+			<label>Login:</label>
+			<input typ="text" id="loginname" onkeyup="checkLogin()" required>
+			<span id="loginStatus"></span><br><br>
+
+			<label>Password:</label>
+			<input type="password" name="password" required><br><br>
+
+			<label>Email:</label>
+			<input type="email" name="email" required><br><br>
+
+			<input type="submit" value="SignUp">
+
+		</form>
+	</body>
+</html>
+
+

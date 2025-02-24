@@ -1,0 +1,72 @@
+<html>
+	<head>
+	<script>
+        // Fetch states from server
+        fetch('getStates.jsp')
+            .then(response => response.json())
+            .then(data => {
+                let stateDropdown = document.getElementById("state");
+                data.forEach(state => {
+                    let option = document.createElement("option");
+                    option.value = state.state_id;
+                    option.textContent = state.state_name;
+                    stateDropdown.appendChild(option);
+                });
+            })
+            .catch(error => console.error("Error fetching states:", error));
+
+        // Fetch districts when a state is selected
+        document.getElementById("state").addEventListener("change", function() {
+            let stateId = this.value;
+            let districtDropdown = document.getElementById("district");
+            districtDropdown.innerHTML = '<option value="">Select District</option>';
+
+            if (stateId) {
+                fetch('getDistricts.jsp?state_id=' + stateId)
+                    .then(response => response.json())
+                    .then(data => {
+                        data.forEach(district => {
+                            let option = document.createElement("option");
+                            option.value = district.district_id;
+                            option.textContent = district.district_name;
+                            districtDropdown.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error("Error fetching districts:", error));
+            }
+        });
+
+        // Fetch district information when district is selected
+        document.getElementById("district").addEventListener("change", function() {
+            let districtId = this.value;
+            let infoDiv = document.getElementById("info");
+
+            if (districtId) {
+                fetch('getDistrictInfo.jsp?district_id=' + districtId)
+                    .then(response => response.text())
+                    .then(data => {
+                        infoDiv.innerHTML = "<p>" + data + "</p>";
+                    })
+                    .catch(error => console.error("Error fetching district info:", error));
+            }
+        });
+    	</script>
+	</head>
+	<body>
+	<h2>Select State and District</h2>
+
+    	<label for="state">State:</label>
+    	<select id="state">
+        <option value="">Select State</option>
+    	</select>
+
+    	<label for="district">District:</label>
+    	<select id="district">
+        <option value="">Select District</option>
+    	</select>
+
+    	<h3>District Information</h3>
+    	<div id="info"></div>
+	</body>
+</html>
+
