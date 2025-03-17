@@ -22,7 +22,7 @@
 			out.print("<span style='color:red;'>Login name is taken.</span>");
 		}
 		else{
-			out.print("<span style='color: red;'>Login name is available.</span>");
+			out.print("<span style='color: green;'>Login name is available.</span>");
 		
 		}
 
