@@ -1,44 +1,32 @@
-<html lang="en">
-<head>
-    <title>WebSocket Chat</title>
-</head>
-<body>
-    <h2>WebSocket Chat</h2>
-    <div id="messages"></div>
-    <input type="text" id="messageInput" placeholder="Type a message">
-    <button id="sendButton">Send</button>
+<html>
+	<body>
+		<h2>Websocket Chat</h2>
+		<div id="messages"></div>
+		<input type="text" id="messageInput" placeholder= "Type a message...">
+		<button onclick="sendMessage()">Send</button>
+		<br>
+		<br>
+		<label id="display_text"></label>
+		<script>
+			const socket= new WebSocket("ws://localhost:8002/MyApps/chat");
+			
+			socket.onmessage= function(event){
+				const message= document.getElementById("display_text");
+				message.innerText= "";
+				message.innerText= "Sender: " +event.data;
+			};
 
-    <script>
-        const socket = new WebSocket('ws://localhost:8080/MyApps/chat');
-
-        socket.onopen = () => {
-            console.log("Connected to WebSocket server");
-        };
-
-        socket.onmessage = (event) => {
-            const messagesDiv = document.getElementById("messages");
-            const messageElement = document.createElement("p");
-            messageElement.textContent = event.data;
-            messagesDiv.appendChild(messageElement);
-            messagesDiv.scrollTop = messagesDiv.scrollHeight;  // Auto-scroll
-        };
-
-        socket.onerror = (error) => {
-            console.error("WebSocket error:", error);
-        };
-
-        socket.onclose = () => {
-            console.log("Disconnected from WebSocket server");
-        };
-
-        document.getElementById("sendButton").onclick = () => {
-            const messageInput = document.getElementById("messageInput");
-            const message = messageInput.value.trim();
-            if (message) {
-                socket.send(message);
-                messageInput.value = "";
-            }
-        };
-    </script>
-</body>
+			function sendMessage(){
+				const input= document.getElementById("messageInput");
+				const message= input.value.trim();
+				let display_text= document.getElementById("display_text");
+				if(message){
+					socket.send(message);
+					display_text.innerText= "";
+					display_text.innerText= "You: " +input.value;
+					input.value= "";
+				}
+			}
+		</script>
+	</body>
 </html>
