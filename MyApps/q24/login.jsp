@@ -8,7 +8,7 @@
 
 	try{
 		Connection conn= DriverManager.getConnection(dbURL, dbUser, dbPass);
-		PreparedStatement st= conn.preparedStatement("select * from login_table where login_name=? and passoword=?");
+		PreparedStatement st= conn.preparedStatement("select * from login_table where login_name=? and password=?");
 		st.setString(1, login);
 		st.setString(2, password);
 		ResultSet rs= st.executeQuery();
