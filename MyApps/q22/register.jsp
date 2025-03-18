@@ -11,7 +11,7 @@
 
 	try{
 		con= DriverManager.getConnection(dbURL, dbUser, dbPass);
-		ps= con.prepareStatement("insert into users(login_name, password, email) values (?, ?, ?)");
+		ps= con.prepareStatement("insert into q22(login_name, password, email) values (?, ?, ?)");
 		ps.setString(1, login);
 		ps.setString(2, pass);
 		ps.setString(3, email);

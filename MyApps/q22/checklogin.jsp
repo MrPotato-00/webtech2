@@ -1,3 +1,5 @@
+<%@ page import="java.util.*"%>
+<%@ page import="java.io.*"%>
 <%@ page import= "java.sql.*"%>
 <%@ include file="dbconfig.jsp"%>
 
@@ -5,7 +7,7 @@
 	String login= request.getParameter("login");
 	if(login==null || login.trim().isEmpty()){
 		out.print("<span style='color: red;'>Enter a login name!</span>");
-		return;
+		//return;
 	}
 
 	Connection con= null;
@@ -13,10 +15,12 @@
 	ResultSet rs= null;
 
 	try{
+		Class.forName("com.mysql.jdbc.Driver");
 		con= DriverManager.getConnection(dbURL, dbUser, dbPass);
-		ps= con.prepareStatement("select * from users where login_name=?");
+		if (con!=null) out.print(con);
+		ps= con.prepareStatement("select * from q22 where login_name=?");
 		ps.setString(1, login);
-		rs= ps.executQuery();
+		rs= ps.executeQuery();
 
 		if(rs.next()){
 			out.print("<span style='color:red;'>Login name is taken.</span>");
@@ -31,9 +35,9 @@
 		e.printStackTrace();
 	}
 	finally{
-		if(rs) r.close();
-		if(ps) ps.close();
-		if(con) con.close();
+		if(rs!=null) rs.close();
+		if(ps!=null) ps.close();
+		if(con!=null) con.close();
 	}
 
 %>

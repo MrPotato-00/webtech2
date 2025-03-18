@@ -8,20 +8,22 @@
 				jax.open("GET", "checklogin.jsp?login=" + login,true);
 				jax.onreadystatechange= function(){
 					if(jax.readyState==4 && jax.status==200){
-						document.getElementById("loginStatus").innerText= jax.responseText;
+						//document.getElementById("loginStatus").innerText= jax.responseText;
+						console.log(jax.responseText);
 					}
-				}
 				};
+				
 				jax.send();
+			}
 		</script>
 	</head>
 	<body>
 		<h2>SignUp</h2>
 		<form action="register.jsp" method="post">
 			<label>Login:</label>
-			<input typ="text" id="loginname" onkeyup="checkLogin()" required>
-			<span id="loginStatus"></span><br><br>
-
+			<input type="text" id="loginname" onkeyup="checkLogin();" required>
+			<!-- <span id="loginStatus"></span> -->
+			<br><br>
 			<label>Password:</label>
 			<input type="password" name="password" required><br><br>
 
