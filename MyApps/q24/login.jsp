@@ -1,31 +1,41 @@
-<%@ page import="java.sql.*" %>
-<%@ include file="dbconfig.jsp"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.io.*"%>
+<%@ page import= "java.sql.*"%>
+<%@ page import="javax.sql.*"%>
+<%@ page import="com.mysql.jdbc.Driver"%>
 
 <%
 	String login= request.getParameter("login");
-	String password= request.getParamter("password");
-	boolen isvalid= false;
+	String password= request.getParameter("pass");
+	System.out.println(login);
+	System.out.println(password);
+	boolean isvalid= false;
 
 	try{
-		Connection conn= DriverManager.getConnection(dbURL, dbUser, dbPass);
-		PreparedStatement st= conn.preparedStatement("select * from login_table where login_name=? and password=?");
+		DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+		Connection conn=  DriverManager.getConnection("jdbc:mysql://172.16.4.234:3306/test", "be2270", "ynDIFtkL");
+		PreparedStatement st= conn.prepareStatement("select * from q22 where login_name=? and password=?");
+		if(conn!=null) System.out.println(conn);
 		st.setString(1, login);
 		st.setString(2, password);
 		ResultSet rs= st.executeQuery();
-
+		//System.out.println(rs.getStatement());
 		if(rs.next()){
-			isvalid=true;
+			out.println("<h3>Register Successful!<a href='home.html'>Login</a></h3>");
+			//System.out.println("success");
 		}
+		
+		if(conn!=null) conn.close();
 	}
 	catch(Exception e){
-		e.printStaceTrace();
+		e.printStackTrace();
 	}
 	finally{
-		if(rs!=null) rs.close();
-		if(st!=null) st.close();
-		if(conn!=null) conn.close();
+		//if(rs!=null) rs.close();
+		//if(st!=null) st.close();
+		//if(conn!=null) conn.close();
 
-		if(isvalid) out.print("success");
-		else out.print("failed");
+		//if(isvalid) out.print("success");
+		//else out.print("failed");
 	}
 %>

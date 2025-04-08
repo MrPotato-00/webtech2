@@ -36,12 +36,12 @@
 		PreparedStatement ps= con.prepareStatement("select * from q22 where login_name=?");
 		ps.setString(1, login);
 		ResultSet rs= ps.executeQuery();
-
+		
 		if(rs.next()){
-			out.print("<span style='color:red;'>Login name is taken</span>");
+			out.println("<span style='color:red;'>Login name is taken</span>");
 		}
 		else{
-			out.print("<span style='color:green;'>Login name is available.</span>");
+			out.println("<span style='color:green;'>Login name is available.</span>");
 		
 		}
 		if (con!=null) {

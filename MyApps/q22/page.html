@@ -4,12 +4,19 @@
 		<script>
 			function checkLogin(){
 				let login= document.getElementById("loginname").value;
+				//if(login.trim().length===0) return ;
 				let jax= new XMLHttpRequest();
 				jax.open("GET", "checklogin.jsp?login=" + login,true);
 				jax.onreadystatechange= function(){
 					if(jax.readyState==4 && jax.status==200){
-						//document.getElementById("loginStatus").innerText= jax.responseText;
-						console.log(jax.responseText);
+						
+						var response = jax.responseText;
+						var pos = response.indexOf("<");
+						console.log(response );
+						console.log(pos );
+						console.log(response.substring(pos));
+
+						document.getElementById("loginStatus").innerHTML=response.substring(pos);
 					}
 				};
 				
@@ -21,8 +28,8 @@
 		<h2>SignUp</h2>
 		<form action="register.jsp" method="post">
 			<label>Login:</label>
-			<input type="text" id="loginname" onkeyup="checkLogin();" required>
-			<!-- <span id="loginStatus"></span> -->
+			<input type="text" id="loginname" name="loginname" onkeyup="checkLogin();" required>
+			 <span id="loginStatus"></span> 
 			<br><br>
 			<label>Password:</label>
 			<input type="password" name="password" required><br><br>

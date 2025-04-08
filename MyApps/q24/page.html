@@ -7,26 +7,30 @@
 
 				let errormsg= document.getElementById("error-message");
 				var jax= new XMLHttpRequest();
-				jax.open("POST", login.jsp", true);
+				jax.open("GET", "login.jsp?login="+login+"&pass="+password, true);
 				
 				jax.onreadystatechange= function(){
 					if(jax.readyState==4 && jax.status==200){
-						if(xhr.responseText.trim()=="success"){
+						/*
+						if(jax.responseText.trim()=="success"){
+							
 							window.location.href= "home.html";
 						}
 						else{
 							errormsg.innerText= "Invalid login";
 							errormsg.style.color= "red";
-						}
+						}*/
+						console.log(jax.responseText);
 					}
 				};
-				jax.send("loginName="+login+ "&password="+password);
+				//jax.send("loginName="+login+ "&password="+password);
+				jax.send();
 			}
 		</script>
 	</head>
 	<body>
 		<h2>Login Page</h2>
-		<form onsubmit=loginuser();">
+		<form onsubmit= "loginuser();">
 			<label>Username:</label>
 			<input type="text" id="loginname" name="loginname" required><br><br>
 			<label>Password:</label>
