@@ -7,8 +7,14 @@ function checkup(){
 	var error= document.getElementById("error");
 	
 	//check for username length
-	if (username.length>10 || username.length==0){
-		error.innerText= "Length not appropriate";
+	if (username.lenth==0){
+		error.innerText= "Username cannot be empty";
+		error.style.color="red";
+		return false;	
+	}
+
+	if (username.length>10){
+		error.innerText= "Username Length should not exceed 10 characters";
 		error.style.color="red";
 		return false;	
 	}
@@ -16,35 +22,47 @@ function checkup(){
 	//check for alphanumeric and "_"
 	const pattern1= /^[a-zA-Z0-9_]+$/;
 	if(pattern1.test(username)==false){
-		error.innerText= "Something other than alphanumeric and underscore";
+		error.innerText= "Username cannot contain anything other than alphanumeric and underscore";
 		error.style.color= "red";
 		return false;
 	}
 	
 	//check for password length
 	if(password.length<6  || password.length >10){
-		error.innerText= "Password length not of appropriate length";
+		error.innerText= "Password length should be between 6 to 10 characters.";
 		error.style.color= "red";
 		return false;
 	}
 
+	function checkdigit(pass){
+		/[0-9]/.test(password)==false;
+	}
 	//check for digit
-	
-	if(/[0-9]/.test(password)==false){
+	if(checkdigit(password)){
 		error.innerText= "Password must have atleast one digit";
 		error.style.color="red";
 		return false;
 	}
+		
+
+
 
 	//check for uppercase
-	
+	let uppercaseCheck=false;
+	console.log(uppercaseCheck);
 	for(let i=0;i<password.length;i++){
-		if(password.charAt(i)==password.charAt(i).toUpperCase())
-			return true;
+		
+		if(checkdigit(password[i]) && password[i]==password[i].toUpperCase()){
+			uppercaseCheck=true;
+			
+		}
 	}
-	error.innerText= "Password must contain atleast one uppercase";
-	error.style.color= "red";
-	return false; 
+
+	if(uppercaseCheck==false){
+		error.innerText= "Password must contain atleast one uppercase";
+		error.style.color= "red";
+		return false;
+	} 
 	
 }
 </script>

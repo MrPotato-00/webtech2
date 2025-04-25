@@ -1,7 +1,6 @@
-<html>
+<!DOCTYPE html>
     <body>
-
-        <form>
+        <form method="POST" accept-charset="utf-8" onsubmit="formsubmit(event)">
           <label>
             <input type="radio" name="option" value="payNow" onclick="showTextbox()"> Pay Now
           </label>
@@ -12,7 +11,7 @@
           <br><br>
           <div id="textbox-container" style="display: none;">
             <label>
-              Enter your desired Date of Payment:
+              Enter your desired Date of Payment (in dd-mm-yyyy format):
               <input type="text" name="text" id="textbox">
             </label>
           </div>
@@ -21,6 +20,12 @@
         </form>
 
         <script>
+          function formsubmit(e){
+            e.preventDefault();
+            
+            window.location.href= "./outropage.html"; 
+          }
+
           function showTextbox() {
             var container = document.getElementById("textbox-container");
             var textbox = document.getElementById("textbox");

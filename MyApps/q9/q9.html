@@ -1,7 +1,7 @@
 <html>
 	<head>
     <script>
-        // Define a JavaScript object containing the states and their respective districts
+        
         var statesAndDistricts = {
             "Bihar": [
                 "Patna",
@@ -86,7 +86,7 @@
 
         };
 
-        // Function to populate the "States" drop-down list
+        
         function populateStates() {
             var statesDropdown = document.getElementById("states");
             for (var state in statesAndDistricts) {
@@ -96,7 +96,7 @@
             }
         }
 
-        // Function to populate the "Districts" drop-down list based on the selected state
+    
         function populateDistricts() {
             var statesDropdown = document.getElementById("states");
             var districtsDropdown = document.getElementById("districts");
@@ -110,15 +110,14 @@
             }
         }
 
-        // Function to display the information of the selected district
+        
         function displayDistrictInfo() {
             var statesDropdown = document.getElementById("states");
             var districtsDropdown = document.getElementById("districts");
             var selectedState = statesDropdown.value;
             var selectedDistrict = districtsDropdown.value;
             var population, sexRatio;
-            // Get the population and sex ratio data from some source based on the selected state and district
-            // For this example, we will just generate random data
+            
             population = Math.floor(Math.random() * 1000000) + 100000;
             sexRatio = Math.floor(Math.random() * 50) + 900;
 
